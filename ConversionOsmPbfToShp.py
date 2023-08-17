@@ -1,11 +1,14 @@
 import os
-from osgeo import ogr
+from osgeo import ogr, gdal
+
+# Antes de cualquier operación ogr
+ogr.UseExceptions()
+os.environ['SHAPE_ENCODING'] = ""
+gdal.SetConfigOption("OGR_TRUNCATE_FIELDS_WARN", "NO")
 
 # Define la ruta del archivo de entrada y salida
-#Agregar listas de capas y archivos de la carpeta de datos con un input
-#modificar el codigo para usarlo en arcGIS
-input_file = "/ruta/a/tu/archivo.osm.pbf"
-output_file_base = "/ruta/a/tu/archivo"
+input_file = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\map.osm."
+output_file_base = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Resultados\archivo"
 
 # Abre el archivo de entrada
 driver = ogr.GetDriverByName('OSM')
