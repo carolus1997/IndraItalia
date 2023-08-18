@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="Black">
+    <option name="enabledOnReformat" value="true" />
+    <option name="sdkUUID" value="6fafd97a-00ac-4cac-addb-94a235c43fd3" />
+  </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9 (arcgispro-py3-clone)" project-jdk-type="Python SDK" />
 </project>

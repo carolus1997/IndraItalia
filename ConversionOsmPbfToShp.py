@@ -1,14 +1,15 @@
 import os
-from osgeo import ogr, gdal
+from osgeo import ogr
+#from osgeo import gdal
 
 # Antes de cualquier operación ogr
-ogr.UseExceptions()
-os.environ['SHAPE_ENCODING'] = ""
-gdal.SetConfigOption("OGR_TRUNCATE_FIELDS_WARN", "NO")
+#ogr.UseExceptions()
+#os.environ['SHAPE_ENCODING'] = ""
+#gdal.SetConfigOption("OGR_TRUNCATE_FIELDS_WARN", "NO")
 
 # Define la ruta del archivo de entrada y salida
-input_file = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\map.osm."
-output_file_base = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Resultados\archivo"
+input_file = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\OSM_EXPORT\caudete.osm"
+output_file_base = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Resultados\caudete"
 
 # Abre el archivo de entrada
 driver = ogr.GetDriverByName('OSM')
@@ -21,7 +22,7 @@ in_layer = data_source.GetLayer()
 out_layers = {}
 
 for feature in in_layer:
-    # Obtiene el tipo de geometría de la característica
+    # Obtiene el tipo de geometría de la entidad
     geom_type = feature.GetGeometryRef().GetGeometryType()
 
     # Crea una nueva capa para cada tipo de geometría, si aún no existe
@@ -38,7 +39,7 @@ for feature in in_layer:
 
         out_layers[geom_type] = out_layer
 
-    # Copia la característica a la capa de salida
+    # Copia la entidad a la capa de salida
     out_layers[geom_type].CreateFeature(feature)
 
 # Cierra los archivos

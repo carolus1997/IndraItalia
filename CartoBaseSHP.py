@@ -10,10 +10,7 @@ arcpy.env.overwriteOutput = True
 
 
 def gestionar_gdb(ruta_datos, nombre_gdb):
-    import arcpy
-    import os
-    from arcpy.sa import *
-    from arcpy import env
+
 
     carpeta_datos_shp = ruta_datos
     mi_gdb = os.path.join(carpeta_datos_shp, "{}.gdb".format(nombre_gdb))
