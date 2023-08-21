@@ -7,8 +7,8 @@ def main():
     location = 'Italy'
 
     dataset_links = pd.read_csv("https://minedbuildings.blob.core.windows.net/global-buildings/dataset-links.csv")
-    Italy_links = dataset_links[dataset_links.Location == location]
-    for _, row in Italy_links.iterrows():
+    italy_links = dataset_links[dataset_links.Location == location]
+    for _, row in italy_links.iterrows():
         df = pd.read_json(row.Url, lines=True)
         df['geometry'] = df['geometry'].apply(shape)
         gdf = gpd.GeoDataFrame(df, crs=4326)

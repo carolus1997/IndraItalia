@@ -1,11 +1,11 @@
 import os
 from osgeo import ogr
-#from osgeo import gdal
+from osgeo import gdal
 
 # Antes de cualquier operación ogr
-#ogr.UseExceptions()
-#os.environ['SHAPE_ENCODING'] = ""
-#gdal.SetConfigOption("OGR_TRUNCATE_FIELDS_WARN", "NO")
+ogr.UseExceptions()
+os.environ['SHAPE_ENCODING'] = ""
+gdal.SetConfigOption("OGR_TRUNCATE_FIELDS_WARN", "NO")
 
 # Define la ruta del archivo de entrada y salida
 input_file = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\OSM_EXPORT\caudete.osm"
