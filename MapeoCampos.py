@@ -31,7 +31,8 @@ try:
     df = pd.DataFrame(field_info_list)
 
     # Especificar el nombre del archivo Excel
-    excel_file = "carreteras_info.xlsx"
+    ponRuta= input("Pon el path del directorio en el que vas a guardar el excel con el nombre")
+    excel_file = ponRuta+"_info.xlsx"
 
     # Exportar el DataFrame a Excel
     df.to_excel(excel_file, index=False)
