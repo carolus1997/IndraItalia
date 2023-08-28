@@ -4,5 +4,5 @@
     <option name="enabledOnReformat" value="true" />
     <option name="sdkUUID" value="6fafd97a-00ac-4cac-addb-94a235c43fd3" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (IndraItalia)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9 (arcgispro-py3-clone)" project-jdk-type="Python SDK" />
 </project>
