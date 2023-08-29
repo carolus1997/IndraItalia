@@ -8,8 +8,8 @@ os.environ['SHAPE_ENCODING'] = ""
 gdal.SetConfigOption("OGR_TRUNCATE_FIELDS_WARN", "NO")
 
 # Define la ruta del archivo de entrada y salida
-input_file = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\OSM_EXPORT\caudete.osm"
-output_file_base = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Resultados\caudete"
+input_file = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\Electricidad\map.osm"
+output_file_base = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Resultados\italia"
 
 # Abre el archivo de entrada
 driver = ogr.GetDriverByName('OSM')
