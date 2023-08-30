@@ -1,8 +1,8 @@
 import arcpy
 
 # Define las rutas de las capas de entrada, la capa de provincias y el geodatabase de salida
-capa_entrada = 'ruta/capa_entrada.shp'
-capa_provincias = 'ruta/capa_provincias.shp'
+capa_entrada = input("Introduce la ruta de la capa a recortar: ")
+capa_provincias = input("Introduce la ruta de la capa de provincias: ")
 gdb_salida = 'ruta/gdb_salida.gdb'
 
 # Crea una capa temporal de la capa de provincias
