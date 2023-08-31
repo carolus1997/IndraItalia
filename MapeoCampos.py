@@ -4,13 +4,13 @@ import pandas as pd
 try:
     # Obtener el mapa actual
     aprx = arcpy.mp.ArcGISProject("CURRENT")
-    map = aprx.activeMap
+    mapa = aprx.activeMap
 
     # Crear una lista vacía para almacenar la información del campo
     field_info_list = []
 
     # Recorrer cada capa en el mapa
-    for layer in map.listLayers():
+    for layer in mapa.listLayers():
 
         # Recorrer cada campo en la capa
         for field in arcpy.ListFields(layer):

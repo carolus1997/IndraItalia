@@ -43,6 +43,7 @@ for raster in rasters:
     arcpy.CalculateStatistics_management(raster)
     arcpy.management.BuildPyramids(raster)
 
+
 # Crear la geodatabase para los rasters
 input_new_gdb = input("Introduce la ruta de la GDB  que vas a crear: ")
 new_gdb = input_new_gdb
@@ -77,12 +78,10 @@ geodatabase = os.path.join(new_gdb, new_name)
 for raster in rasters:
     arcpy.AddRastersToMosaicDataset_management(geodatabase + "/" + input_name_Mosaic, "Raster Dataset", raster, "UPDATE_CELL_SIZES", "UPDATE_BOUNDARY", "UPDATE_OVERVIEWS", -1, 100, 1500, "", "", "", "ALLOW_DUPLICATES", "BUILD_PYRAMIDS", "CALCULATE_STATISTICS", "NO_THUMBNAILS", "", "NO_FORCE_SPATIAL_REFERENCE")
 print('Rasters añadidos al mosaico')
-in_mosaic_dataset= input_name_Mosaic
-arcpy.management.MergeMosaicDatasetItems(in_mosaic_dataset)
-print('Rasters Fusionados')
 
 
-"""# Ruta del Mosaic Dataset
+
+'''# Ruta del Mosaic Dataset
 mosaic_dataset = "C:/ruta/de/la/geodatabase.gdb/MosaicDatasetName"
 
 # Ruta de la capa de provincias
@@ -108,4 +107,4 @@ for provincia in provincias:
     # Recortar el raster de la provincia
     raster_recortado = os.path.join(geodatabase_provincia, "DEM_" + nombre_provincia)
     arcpy.Clip_management(mosaic_dataset, "#", raster_recortado, capa_provincias, "#", "ClippingGeometry", "NO_MAINTAIN_EXTENT")
-    """
+    '''
