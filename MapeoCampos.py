@@ -1,5 +1,7 @@
 import arcpy
 import pandas as pd
+import sys
+
 
 try:
     # Obtener el mapa actual
@@ -31,7 +33,8 @@ try:
     df = pd.DataFrame(field_info_list)
 
     # Especificar el nombre del archivo Excel
-    ponRuta= input("Pon el path del directorio en el que vas a guardar el excel con el nombre")
+#    ponRuta = input("Pon el path del directorio en el que vas a guardar el excel con el nombre")
+    ponRuta = sys.argv[1]
     excel_file = ponRuta+"_info.xlsx"
 
     # Exportar el DataFrame a Excel

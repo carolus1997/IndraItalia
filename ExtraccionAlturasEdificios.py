@@ -10,7 +10,7 @@ def extract_height(properties):
     return height_str.replace('.', ',')
 
 # Define la ruta de la carpeta que deseas recorrer
-workspace = "ruta_a_tu_carpeta"
+workspace = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\OSM_EXPORT"
 
 # Recorre la carpeta y subcarpetas
 for dirpath, dirnames, filenames in arcpy.da.Walk(workspace, datatype="FeatureClass"):
