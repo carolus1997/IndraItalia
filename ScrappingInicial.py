@@ -1,27 +1,40 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium import webdriver
+import requests
+from bs4 import BeautifulSoup
 
-def get_data_from_url(url):
-    driver = webdriver.Firefox(executable_path=r'C:\Users\ctmiraperceval\Downloads\geckodriver-v0.33.0-win32\geckodriver.exe')
-def get_data_from_url(url):
-    driver = webdriver.Firefox()  # o puedes usar webdriver.Chrome() si tienes Chrome
-    driver.get(url)
+# Ruta del certificado del servidor
+cert_path = '/path/to/cert.pem'
 
-    # Espera a que se cargue el contenido dinámico
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, 'area')))
+# Realiza la solicitud HTTP GET a la página web
+url = 'https://tinitaly.pi.ingv.it/Download_Area1_0.html'
+response = requests.get(url, verify=cert_path)
 
-    # Encuentra todos los elementos que satisfacen las condiciones
-    areas = driver.find_elements_by_css_selector('area[shape="poly"][id*="VPARTICELLE"]')
+# Analiza el contenido HTML de la página
+soup = BeautifulSoup(response.content, 'html.parser')
 
-    ids = [area.get_attribute('id') for area in areas]
+# Encuentra todas las etiquetas 'area' dentro del mapa 'FPMap0'
+areas = soup.select('map[name="FPMap0"] area')
 
-    driver.quit()
+# Crea una lista para almacenar los enlaces de descarga
+enlaces_descarga = []
 
-    return ids
+# Itera sobre las etiquetas 'area' y extrae los enlaces de descarga
+for area in areas:
+    enlace = area['href']
+    if enlace.endswith('.zip'):
+        enlaces_descarga.append(enlace)
 
-if __name__ == '__main__':
-    url = 'http://cartografia.infobat.it/bat/index.jsp?application=CAT'
-    print(get_data_from_url(url))
+# Descarga los archivos .zip
+for enlace in enlaces_descarga:
+    url_descarga = url + '/' + enlace
+    nombre_archivo = enlace.split('/')[-1]
+
+    # Realiza la solicitud HTTP GET al enlace de descarga
+    response = requests.get(url_descarga)
+
+    # Guarda el contenido de la respuesta en un archivo local
+    with open(nombre_archivo, 'wb') as archivo:
+        archivo.write(response.content)
+
+    print(f"Archivo '{nombre_archivo}' descargado con éxito.")
+
+print("Descarga completa.")
