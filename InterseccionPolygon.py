@@ -1,18 +1,20 @@
 import arcpy
+import os
+# 1. Leer las capas
+capa1 = r"C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos\Edificios\hotosm_ita_northeast_buildings_polygons.shp"
+capa2 = r"C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos\Edificios\gis_osm_buildings_a_free_1.shp"
+# Asegúrate de que la ruta de salida exista
+ruta_salida = r"C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos\Edificios"
+if not os.path.exists(ruta_salida):
+    os.makedirs(ruta_salida)
 
-# Define las rutas de las capas de entrada y la capa de salida
-capa1 = 'ruta/capa1.shp'
-capa2 = 'ruta/capa2.shp'
-capa_salida = 'ruta/capa_salida.shp'
+# 2. Comparar geometrías y 3. Guardar entidades que intersecan
+# Crear una capa temporal para las entidades que intersecan
+capa_interseccion = arcpy.Intersect_analysis([capa1, capa2], os.path.join(ruta_salida, "capa_interseccion"))
 
-# Realiza la intersección de las capas de entrada
-arcpy.Intersect_analysis([capa1, capa2], capa_salida, "ALL", "", "INPUT")
+# 4. Si no intersecan, guardar ambas entidades
+# Crear una capa temporal para las entidades que no intersecan
+capa_simetrica = arcpy.SymDiff_analysis(capa1, capa2, os.path.join(ruta_salida, "capa_simetrica"))
 
-# Selecciona los polígonos de la capa 1 que no tienen intersección
-arcpy.SelectLayerByLocation_management(capa1, "SHARE_A_LINE_SEGMENT_WITH", capa2, invert_spatial_relationship=True)
-
-# Crea una copia de los polígonos seleccionados en una nueva capa
-arcpy.CopyFeatures_management(capa1, capa_salida)
-
-# Imprime un mensaje de finalización
-print("Intersección completada")
+# Unir las dos capas temporales en una nueva capa
+arcpy.Merge_management([capa_interseccion, capa_simetrica], os.path.join(ruta_salida, "capa_final"))
