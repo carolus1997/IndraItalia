@@ -2,8 +2,8 @@ import arcpy
 import os
 import re
 # Establecer la ubicación de la capa "regiones" y la capa "provincias"
-regiones_layer = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\Unidades_Admin_It\RegionesItalia.shp"
-provincias_layer = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\Unidades_Admin_It\ProvinciasItalia.shp"
+regiones_layer = r"C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos\Unidades_Admin_It\RegionesItalia.shp"
+provincias_layer = r"C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos\Edificios\ProvinciasItalia.shp"
 
 # Obtener la lista de nombres de regiones de la capa "regiones"
 nombres_regiones = []
@@ -13,7 +13,7 @@ with arcpy.da.SearchCursor(regiones_layer, "Name_1") as cursor:
         nombres_regiones.append(nombre_region)
 
 # Crear una geodatabase para cada nombre de región
-output_folder = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Resultados\Gdbs"
+output_folder = r"C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos\PruebasSolucionErrores\Edificios"
 for nombre_region in nombres_regiones:
     # Reemplazar caracteres inválidos en el nombre de la región
     nombre_region_clean = re.sub(r"[^\w\s]", "", nombre_region)

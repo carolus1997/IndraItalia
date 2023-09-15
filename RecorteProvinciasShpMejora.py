@@ -28,7 +28,9 @@ else:
     if input_pregunta_gdb == 'SI':
         input_name_gdb = input(
             "Introduce el nombre de la GDB que vas a crear: ")
-        arcpy.management.CreateFileGDB(gdb_output, input_name_gdb)
+        new_name = f"{input_name_gdb}.gdb"
+        arcpy.management.CreateFileGDB(gdb_output, new_name)
+        gdb_salida = os.path.join(gdb_output, new_name)
         print(f"Se ha creado una .gdb con el nombre: {input_name_gdb}")
     elif input_pregunta_gdb == 'NO':
         input_new_gdb = input("Introduce la ruta de la GDB  que vas a crear: ")
@@ -39,6 +41,7 @@ else:
         new_name = f"{input_name_gdb}.gdb"
         print(new_name)
         arcpy.management.CreateFileGDB(new_gdb, new_name)
+        gdb_salida = os.path.join(gdb_output, f"{new_name}.gdb")
         print(f"Se ha creado una .gdb con el nombre: {input_name_gdb}")
 
 # Crea una capa temporal de la capa de provincias
