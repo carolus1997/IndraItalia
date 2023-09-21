@@ -34,7 +34,7 @@ def mapear_nombre_provincia_a_dataset(nombre_provincia):
 ruta_inicial = r"C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data"
 
 # Construir las rutas completas a las carpetas de ríos y carreteras
-ruta_recursos_rios = os.path.join(ruta_inicial, "Recursos", "CuerposAgua")
+ruta_recursos_rios = os.path.join(ruta_inicial, "Recursos", "POI")
 #ruta_recursos_carreteras = os.path.join(ruta_inicial, "Recursos", "Vegetacion")
 ruta_resultados = os.path.join(ruta_inicial, "Resultados", "Gdbs")
 
@@ -87,7 +87,7 @@ for archivo in archivos_resultados:
                 if mapear_nombre_provincia_a_dataset(nombre_provincia_rios) == dataset:
                     # Copiar la capa a este dataset de resultados
                     capa_origen_rios = os.path.join(gdb_rio, rio)
-                    capa_destino_rios = os.path.join(gdb_resultado, dataset, f"{mapear_nombre_provincia_a_dataset(nombre_provincia_rios)}_CuerposAgua")
+                    capa_destino_rios = os.path.join(gdb_resultado, dataset, f"{mapear_nombre_provincia_a_dataset(nombre_provincia_rios)}_POI")
                     if not arcpy.Exists(capa_destino_rios):
                         try:
                             arcpy.CopyFeatures_management(capa_origen_rios, capa_destino_rios)
