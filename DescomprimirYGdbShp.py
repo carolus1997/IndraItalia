@@ -2,7 +2,7 @@ import os
 import zipfile
 import arcpy
 
-directorio_principal = r'C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos\Catastro\Piemonte'
+directorio_principal = r'C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos_Es\Geofabrik'
 
 for root, dirs, files in os.walk(directorio_principal):
     for archivo in files:
