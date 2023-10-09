@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geocodificación con Nominatim</title>
+</head>
+<body>
+    <h2>Introduce una dirección</h2>
+    <form action="/geocode" method="post">
+        <input type="text" name="address" placeholder="Ej: Calle Gran Vía, Madrid" required>
+        <input type="submit" value="Geocodificar">
+    </form>
+
+    <h2>Sube un archivo JSON</h2>
+    <form action="/upload_json" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".json">
+    <input type="submit" value="Procesar y descargar GeoJSON">
+    </form>
+
+    <h2>O sube un CSV con direcciones</h2>
+    <form action="/upload_csv" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv">
+        <input type="submit" value="Geocodificar y descargar GeoJSON">
+    </form>
+
+    <h2>Descargar plantilla CSV</h2>
+    <a href="/descargar_plantilla">Descargar plantilla.txt</a>
+
+</body>
+</html>

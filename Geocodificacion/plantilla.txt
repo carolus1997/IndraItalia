@@ -1,0 +1,2 @@
+ID,Calle,Número,Piso y Puerta,Código Postal,Ciudad,Provincia,País
+1,Ejemplo Calle,123,2B,12345,Ejemplo Ciudad,Ejemplo Provincia,Ejemplo País
