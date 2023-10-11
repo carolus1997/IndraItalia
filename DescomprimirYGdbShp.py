@@ -2,14 +2,21 @@ import os
 import zipfile
 import arcpy
 
-directorio_principal = r'C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos_Es\Geofabrik'
+directorio_principal = r'C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos_Es\BTN'
 
 for root, dirs, files in os.walk(directorio_principal):
     for archivo in files:
         if archivo.endswith('.zip'):
             ruta_completa = os.path.join(root, archivo)
+
+            # Crear un directorio con el mismo nombre que el archivo ZIP (sin la extensión)
+            directorio_destino = os.path.join(root, archivo[:-4])
+            if not os.path.exists(directorio_destino):
+                os.makedirs(directorio_destino)
+
+            # Descomprimir el archivo ZIP en el directorio creado
             with zipfile.ZipFile(ruta_completa, 'r') as archivo_zip:
-                archivo_zip.extractall(root)
+                archivo_zip.extractall(directorio_destino)
 
 
 

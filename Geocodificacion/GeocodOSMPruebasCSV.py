@@ -3,6 +3,7 @@ import requests
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import os
 import json
+import chardet
 
 app = Flask(__name__)
 
@@ -42,21 +43,27 @@ def upload_csv():
         "features": []
     }
 
-    csv_reader = csv.reader(file.read().decode('utf-8').splitlines(), delimiter=';')
+    # Decodificar el contenido del archivo usando 'ISO-8859-1'
+    content = file.read().decode('ISO-8859-1')
+    csv_reader = csv.reader(content.splitlines())
     next(csv_reader, None)  # skip the headers
 
     for row in csv_reader:
-        address = row[0]  # Asumiendo que la dirección es la primera columna
+        address = f"{row[0]} {row[1]}, {row[2]},{row[5]}"
+        print(f"Consultando dirección: {address}")
         url = NOMINATIM_URL + address
         response = requests.get(url)
         data = response.json()
-
+        # Si data está vacío, imprimamos un mensaje
+        if not data:
+            print(f"No se encontraron datos para la dirección: {address}")
+            continue
         if data:
             feature = {
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [float(data[0]['lat']), float(data[0]['lon'])]
+                    "coordinates": [float(data[0]['lon']), float(data[0]['lat'])]
                 },
                 "properties": {
                     "address": address
@@ -65,10 +72,11 @@ def upload_csv():
             geojson["features"].append(feature)
 
     # Guardar el GeoJSON en un archivo
-    with open('output.geojson', 'w') as f:
+    with open('Address.geojson', 'w') as f:
         json.dump(geojson, f)
 
-    return send_from_directory(directory=os.getcwd(), path='output.geojson', as_attachment=True, mimetype='application/json')
+    return send_from_directory(directory=os.getcwd(), path='Address.geojson', as_attachment=True, mimetype='application/json')
+
 @app.route('/descargar_plantilla')
 def descargar_plantilla():
     return send_from_directory(directory=os.getcwd(), filename='plantilla.txt', as_attachment=True, mimetype='text/csv')
