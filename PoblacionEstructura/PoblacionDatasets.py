@@ -25,9 +25,10 @@ def mapear_nombre_provincia_a_dataset(nombre_provincia):
 ruta_inicial = r"C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data"
 
 # Construir las rutas completas a las carpetas
-ruta_recursos = os.path.join(ruta_inicial, "Recursos_Es", "Edificios")
-ruta_resultados = os.path.join(ruta_inicial, "Resultados", "Gdbs_Es")
+ruta_recursos = os.path.join(ruta_inicial, "Recursos_Por", "Carreteras")
+ruta_resultados = os.path.join(ruta_inicial, "Resultados", "Gdbs_Por")
 
+tipocapa = input("Introduce el tipo de capa que vas a usar por ej. rios, carreteras, etc: ")
 # Crear las carpetas de resultados si no existen
 if not os.path.exists(ruta_resultados):
     os.makedirs(ruta_resultados)
@@ -63,7 +64,7 @@ try:
                     nombre_provincia_capa = obtener_nombre_dataset(capa)
                     if mapear_nombre_provincia_a_dataset(nombre_provincia_capa) == dataset:
                         capa_origen = os.path.join(gdb_origen, capa)
-                        capa_destino = os.path.join(gdb_resultado, dataset, f"{mapear_nombre_provincia_a_dataset(nombre_provincia_capa)}_Edificios")
+                        capa_destino = os.path.join(gdb_resultado, dataset, f"{mapear_nombre_provincia_a_dataset(nombre_provincia_capa)}_{tipocapa}")
                         if not arcpy.Exists(capa_destino):
                             arcpy.CopyFeatures_management(capa_origen, capa_destino)
                             print(f"Se ha copiado la capa: {capa_destino}")

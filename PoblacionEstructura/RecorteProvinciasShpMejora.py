@@ -51,7 +51,7 @@ arcpy.MakeFeatureLayer_management(capa_provincias, 'provincias_lyr')
 provincias = [row[0] for row in arcpy.da.SearchCursor('provincias_lyr', 'NAME_2')]
 
 # Sustituye las comillas simples en los nombres de las provincias por un carácter de escape de comilla simple
-provincias_escaped = [provincia.replace("'", "_") for provincia in provincias]
+provincias_escaped = [provincia.replace("'", "_").replace("´", "") for provincia in provincias]
 
 print(f"LISTA DE PRONVINCIAS: {provincias_escaped}")
 
@@ -66,6 +66,7 @@ for provincia in provincias_escaped:
 
     # Recorta la capa de entrada según los límites de la provincia actual y guarda el resultado en la capa de salida
     arcpy.Clip_analysis(capa_entrada, 'provincias_lyr', capa_salida)
+    print(f'Se ha recortado la provincia de {provincia}')
 print("Capas recortadas, procedemos a eliminar las capas temporales")
 # Elimina la capa temporal de provincias
 arcpy.Delete_management('provincias_lyr')

@@ -20,7 +20,7 @@ for carpeta in os.listdir(ruta):
         # Buscar las capas dentro de la carpeta
         capas_a_mezclar = []
 # Añade las capas
-        for capa in ["BTN0316S_LAGUNA", "BTN0319S_HUMEDA", "BTN0325S_EMBALSE"]:
+        for capa in ["BTN0305L_CAU_ART", "BTN0549L_ACUEDU"]:
             # Busca archivos que contienen la palabra clave de la capa y terminan en .shp
             archivos_capa = [f for f in os.listdir(carpeta_path) if capa in f and f.endswith('.shp')]
             for archivo in archivos_capa:
@@ -30,6 +30,6 @@ for carpeta in os.listdir(ruta):
         print(f'Lista de capas a jerarquizar: {capas_a_mezclar}')
         # Realizar el Merge de las capas encontradas
         if capas_a_mezclar:
-            capa_resultante = os.path.join(ruta_destino, f"CuerposAgua_{carpeta}")
+            capa_resultante = os.path.join(ruta_destino, f"CanalesArtificiales_{carpeta}")
             arcpy.Merge_management(capas_a_mezclar, capa_resultante)
 

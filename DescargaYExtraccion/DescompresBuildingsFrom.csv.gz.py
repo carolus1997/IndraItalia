@@ -4,7 +4,7 @@ from shapely.geometry import shape
 
 def main():
     # this is the name of the geography you want to retrieve. update to meet your needs
-    location = 'Italy'
+    location = 'Portugal'
 
     dataset_links = pd.read_csv("https://minedbuildings.blob.core.windows.net/global-buildings/dataset-links.csv")
     italy_links = dataset_links[dataset_links.Location == location]
