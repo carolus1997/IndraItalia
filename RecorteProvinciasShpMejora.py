@@ -9,7 +9,7 @@ capa_entrada = input("Introduce la ruta de la capa a recortar: ")
 capa_provincias = input("Introduce la ruta de la capa de provincias: ")
 gdb_output = input("Introduce la ruta de la gdb de destino: ")
 gdb_name = input("Introduce el nombre de la gdb de destino: ")
-gdb_salida = os.path.join(gdb_output,gdb_name)
+gdb_salida = os.path.join(gdb_output, gdb_name + ".gdb")
 if arcpy.Exists(gdb_salida):
     print("Tu gdb ya existe")
     vaciado = input(
@@ -61,7 +61,7 @@ for provincia in provincias_escaped:
     arcpy.SelectLayerByAttribute_management('provincias_lyr', 'NEW_SELECTION', f"NAME_2 = '{provincia}'")
     # Define el nombre de la capa de salida
     nombre_capa_salida = f"{capa_type}_{provincia}"
-    nombre_capa_salida = nombre_capa_salida.replace(" ", "_").replace("-", "_")
+    nombre_capa_salida = nombre_capa_salida.replace(" ", "_").replace("-", "_").replace("/", "")
     capa_salida = os.path.join(gdb_salida, nombre_capa_salida)
 
     # Recorta la capa de entrada según los límites de la provincia actual y guarda el resultado en la capa de salida
