@@ -2,8 +2,8 @@ import os
 import geopandas as gpd
 
 # Define la ruta de la carpeta de entrada y salida
-input_folder = r"C:\Users\ctmiraperceval\Documents\GitHub\IndraItalia"
-output_folder = r"C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos"
+input_folder = r"D:\Minsait_Curro\Recursos_Por\Edificios\GeoJSON"
+output_folder = r"D:\Minsait_Curro\Recursos_Por\Edificios\GeoJSONToShp"
 
 # Crea la carpeta de salida si no existe
 os.makedirs(output_folder, exist_ok=True)
