@@ -22,11 +22,11 @@ def mapear_nombre_provincia_a_dataset(nombre_provincia):
     return nombre_provincia
 
 # Obtener la ruta inicial del usuario
-ruta_inicial = r"C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data"
+ruta_inicial = r"D:\Minsait_Curro"
 
 # Construir las rutas completas a las carpetas
-ruta_recursos = os.path.join(ruta_inicial, "Recursos_Por", "Carreteras")
-ruta_resultados = os.path.join(ruta_inicial, "Resultados", "Gdbs_Por")
+ruta_recursos = input("Introduce la ruta de la capa de entrada: ")
+ruta_resultados = input("Introduce la ruta de la carpeta de destino: ")
 
 tipocapa = input("Introduce el tipo de capa que vas a usar por ej. rios, carreteras, etc: ")
 # Crear las carpetas de resultados si no existen
