@@ -1,0 +1,26 @@
+[
+    {
+        "road": "Calle Gran Vía",
+        "house_number": "12",
+        "city": "Madrid",
+        "county": "Madrid",
+        "country": "España",
+        "postcode": "28013"
+    },
+    {
+        "road": "Rua de Santa Catarina",
+        "house_number": "223",
+        "city": "Porto",
+        "county": "Porto",
+        "country": "Portugal",
+        "postcode": "4000-450"
+    },
+    {
+        "road": "Via del Corso",
+        "house_number": "156",
+        "city": "Roma",
+        "county": "Roma",
+        "country": "Italia",
+        "postcode": "00186"
+    }
+]

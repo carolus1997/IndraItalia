@@ -1,29 +1,65 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Geocodificación con Nominatim</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
-    <h2>Introduce una dirección</h2>
-    <form action="/geocode" method="post">
-        <input type="text" name="address" placeholder="Ej: Calle Gran Vía, Madrid" required>
-        <input type="submit" value="Geocodificar">
-    </form>
 
-    <h2>Sube un archivo JSON</h2>
-    <form action="/upload_json" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" accept=".json">
-    <input type="submit" value="Procesar y descargar GeoJSON">
-    </form>
+<body class="bg-light">
 
-    <h2>O sube un CSV con direcciones</h2>
-    <form action="/upload_csv" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".csv">
-        <input type="submit" value="Geocodificar y descargar GeoJSON">
-    </form>
+    <div class="container mt-5">
+        <h2 class="mb-3">Introduce una dirección</h2>
+        <form id="geocodeForm" action="/geocode" method="post" class="mb-5">
+            <div class="form-group">
+                <input type="text" name="address" class="form-control" placeholder="Ej: Calle Gran Vía, Madrid" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Geocodificar">
+        </form>
 
-    <h2>Descargar plantilla CSV</h2>
-    <a href="/descargar_plantilla">Descargar plantilla.txt</a>
+        <h2 class="mb-3">Sube un archivo JSON</h2>
+        <form id="jsonForm" action="/upload_json" method="post" enctype="multipart/form-data" class="mb-5">
+            <div class="form-group">
+                <input type="file" name="file" class="form-control-file" accept=".json" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Procesar y descargar GeoJSON">
+        </form>
 
+        <h2 class="mb-3">O sube un CSV con direcciones</h2>
+        <form id="csvForm" action="/upload_csv" method="post" enctype="multipart/form-data" class="mb-5">
+            <div class="form-group">
+                <input type="file" name="file" class="form-control-file" accept=".csv" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Geocodificar y descargar GeoJSON">
+        </form>
+
+        <h2 class="mb-3">Descargar plantillas</h2>
+        <a href="/descargar_plantilla_csv" class="btn btn-secondary mb-3">Descargar plantilla.csv</a>
+        <br>
+        <a href="/descargar_plantilla_json" class="btn btn-secondary mb-3">Descargar plantilla.json</a>
+
+    </div>
+
+    <!-- Optional JavaScript; Bootstrap Bundle with Popper -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("form").submit(function() {
+                let formId = $(this).attr('id');
+                if (formId === "geocodeForm" && !$("[name='address']").val()) {
+                    alert("Por favor, introduzca una dirección.");
+                    return false;
+                }
+                if ((formId === "jsonForm" || formId === "csvForm") && !$("[name='file']").val()) {
+                    alert("Por favor, seleccione un archivo.");
+                    return false;
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
+
