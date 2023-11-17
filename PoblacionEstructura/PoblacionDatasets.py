@@ -28,11 +28,9 @@ def copiar_recurso(origen, destino, tipo):
     elif tipo == "Raster":
         arcpy.CopyRaster_management(origen, destino)
 
-# Obtener la ruta inicial del usuario
-ruta_inicial = r"D:\Minsait_Curro"
 
 # Construir las rutas completas a las carpetas
-ruta_recursos = input("Introduce la ruta de la capa de entrada: ")
+ruta_recursos = input("Introduce la ruta de la carpeta de entrada: ")
 ruta_resultados = input("Introduce la ruta de la carpeta de destino: ")
 
 tipocapa = input("Introduce el tipo de capa que vas a usar por ej. rios, carreteras, etc: ")
