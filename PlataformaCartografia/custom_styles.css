@@ -1,0 +1,90 @@
+
+/* Bootstrap core CSS */
+@import url('css/bootstrap.min.css');
+
+/* Estilos personalizados para esta plantilla */
+body {
+    padding-top: 5rem;
+    background-color: #f7f7f7;
+}
+
+.container {
+    max-width: 960px;
+}
+
+.map-container {
+    position: relative;
+    padding-top: 65.25%;
+    padding-bottom: .75rem;
+    height: 0;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.search-container {
+    margin-bottom: 1rem;
+}
+
+.sidebar {
+    background-color: #e9ecef;
+    border-radius: .25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Responsive typography and container width */
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Botones y formularios */
+.btn-search {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-search:hover {
+    background-color: #0056b3;
+}
+
+#search-input {
+    border: 2px solid #007bff;
+    border-right: none;
+    padding: .5rem;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+
+/* Adapta esto a tus necesidades para los widgets específicos */
+.widget {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: .25rem;
+    margin-bottom: 1rem;
+}
