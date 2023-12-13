@@ -1,4 +1,3 @@
-
 /* Bootstrap core CSS */
 @import url('css/bootstrap.min.css');
 
@@ -40,11 +39,19 @@ body {
     margin-bottom: 1rem;
 }
 
+header {
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
 /* Responsive typography and container width */
 @media (min-width: 768px) {
     .container {
         max-width: 720px;
     }
+
     h1 {
         font-size: 2.5rem;
     }
