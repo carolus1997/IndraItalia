@@ -1,77 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Plataforma de Cartografía</title>
-        <style>
-          body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
-          .container { width: 80%; margin: auto; overflow: hidden; }
-          header { background: #333; color: #fff; padding: 20px; text-align: center; }
-          #map { height: 400px; }
-          .sidebar { background: #eaeaea; padding: 20px; }
-          .search-container { margin-bottom: 20px; }
-          /* Añade aquí más estilos para tus widgets y elementos */
-        </style>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma de Cartografía</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="custom_styles.css">
+</head>
+
 <body>
 
-<header>
-  <div class="header">
-    <h1>Plataforma de Cartografía</h1>
-  </div>
-  
-</header>
+  <header>
+    <div class="header">
+      <h1>Plataforma de Cartografía</h1>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary menunav">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Rol
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Desarollo</a></li>
+                <li><a class="dropdown-item" href="#">Cartografía</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Managing</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Recursos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">Contacto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Comunidad</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
 
-<div class="container">
-  <div class="search-container">
-    <input type="text" id="search-input" placeholder="Buscar información geográfica...">
-    <button onclick="search()">Buscar</button>
-  </div>
+  </header>
 
-  <aside class="sidebar">
-    <!-- Widgets como mediciones, ubicaciones, etc. -->
-    <p>Losw idgets irán aquí</p>
-    <!-- Formulario para el cálculo de campos, etc. -->
-    <p>Formulario para cálculo de campos</p>
-  </aside>
-  <aside class="sidebar">
-    <!-- Formulario para el cálculo de campos, etc. -->
-    <p>Formulario para cálculo de campos</p>
-  </aside>
-  <section id="map">
-    <!-- Aquí se mostrará el mapa -->
+  <!--  <div>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Buscar información geográfica...">
+      <button onclick="search()">Buscar</button>
+    </div>
+  </div>-->
+
+  <section id="intro">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   </section>
-</div>
+  <script>
+    // Aquí puedes añadir la lógica para incorporar tus scripts cartográficos
+    // Por ejemplo, inicializar un mapa, añadir controles, cargar capas, etc.
+    function initMap() {
+      console.log("Inicializar el mapa aquí");
+    }
 
-<script>
-  // Aquí puedes añadir la lógica para incorporar tus scripts cartográficos
-  // Por ejemplo, inicializar un mapa, añadir controles, cargar capas, etc.
-  function initMap() {
-    console.log("Inicializar el mapa aquí");
-  }
+    function search() {
+      var searchTerm = document.getElementById('search-input').value;
+      // Implementar lógica de búsqueda...
+      fetch('/search?query=' + searchTerm)
+        .then(response => response.json())
+        .then(data => {
+          updateMapWithSearchResults(data);
+        });
+    }
 
-  function search() {
-    var searchTerm = document.getElementById('search-input').value;
-    // Implementar lógica de búsqueda...
-    fetch('/search?query=' + searchTerm)
-      .then(response => response.json())
-      .then(data => {
-        updateMapWithSearchResults(data);
-      });
-  }
+    function updateMapWithSearchResults(results) {
+      // Actualizar mapa con resultados...
+      console.log("Actualizar el mapa con los resultados de búsqueda", results);
+    }
 
-  function updateMapWithSearchResults(results) {
-    // Actualizar mapa con resultados...
-    console.log("Actualizar el mapa con los resultados de búsqueda", results);
-  }
-
-  window.onload = function() {
-    initMap();
-  };
-</script>
+    window.onload = function () {
+      initMap();
+    };
+  </script>
 
 </body>
+
 </html>
