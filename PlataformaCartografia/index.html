@@ -13,7 +13,7 @@
 
   <header>
     <div class="header">
-      <h1>Plataforma de Cartografía</h1>
+      <h1>SmarTEC</h1>
     </div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary menunav">
       <div class="container-fluid">
@@ -22,36 +22,38 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Inicio</a>
             </li>
-            
+
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Rol
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Roles
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Desarollo</a></li>
                 <li><a class="dropdown-item" href="#">Cartografía</a></li>
-                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
                 <li><a class="dropdown-item" href="#">Managing</a></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Recursos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Contacto</a>
+              <a class="nav-link dropdown-toggle" href="#">Recursos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Comunidad</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link">Contacto</a>
+            </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+
         </div>
       </div>
     </nav>
-
+    <div id="spanInicio">
+      <img style="width:100%;height:100%;border-radius: 50px;" src="Imagenes/Modern Creative Technology Logo.png">
+    </div>
   </header>
 
   <!--  <div>
@@ -62,38 +64,146 @@
   </div>-->
 
   <section id="intro">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p style="text-align: justify;">En la vanguardia de la era digital, nuestra plataforma ofrece soluciones innovadoras
+      para la gestión del
+      conocimiento y el desarrollo de habilidades. Con un enfoque integrado que combina y centraliza la tecnología y
+      metodologías que usamos, pretendemos organizar y compartir conocimiento y demás funcionalidades, asegurando el uso
+      de la
+      éxito en un mundo en constante cambio. Usemos esta plataforma para transformar la
+      información en acciones más concretas y el crecimiento del equipo en comunidad.</p>
   </section>
-  <script>
-    // Aquí puedes añadir la lógica para incorporar tus scripts cartográficos
-    // Por ejemplo, inicializar un mapa, añadir controles, cargar capas, etc.
-    function initMap() {
-      console.log("Inicializar el mapa aquí");
-    }
 
-    function search() {
-      var searchTerm = document.getElementById('search-input').value;
-      // Implementar lógica de búsqueda...
-      fetch('/search?query=' + searchTerm)
-        .then(response => response.json())
-        .then(data => {
-          updateMapWithSearchResults(data);
-        });
-    }
+  <!--  SECCION DE ENTRADA A LOS DIFERENTES ROLES-->
+  <section class="cuerpoPrincipal">
+    <div class="introCuerpos">
+      <h1 class="tituloseccion">Roles</h1>
+      <hr style="height: 1px; width: 80%;background-color: #706d6db9;">
+      <br style="height: 3%;">
+    </div>
+    <div class="d-flex flex-row justify-content-around align-items-stretch">
+      <div class="card">
+        <img src="Imagenes/Desarrollo.jpg" class="card-img-top imgRoles" alt="..." style="height: 50%;">
+        <div class="card-body">
+          <p>
+          <h3>Desarollo</h3>
+          </p>
+          <hr>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <button type="button" class="btn btn-outline-primary flex-end">Acceder</button>
+        </div>
+      </div>
 
-    function updateMapWithSearchResults(results) {
-      // Actualizar mapa con resultados...
-      console.log("Actualizar el mapa con los resultados de búsqueda", results);
-    }
+      <div class="card">
+        <img src="Imagenes/Cartografia.jpg" class="card-img-top imgRoles" alt="..." style="height: 50%;">
+        <div class="card-body">
+          <p>
+          <h3>Cartografía</h3>
+          </p>
+          <hr>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <button type="button" class="btn btn-outline-primary flex-end">Acceder</button>
+        </div>
+      </div>
 
-    window.onload = function () {
-      initMap();
-    };
-  </script>
+      <div class="card">
+        <img src="Imagenes/managing.jpg" class="card-img-top imgRoles " alt="..." style="height: 50%;">
+        <div class="card-body">
+          <p>
+          <h3>Managing</h3>
+          </p>
+          <hr>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <button type="button" class="btn btn-outline-primary flex-end">Acceder</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!--  SECCION DE ENTRADA A LAS FUNCIONALIDADES-->
+  <section class="cuerpoPrincipal">
+    <div class="introCuerpos">
+      <h1 class="tituloseccion">Funcionaldades</h1>
+      <hr style="height: 1px; width: 80%;background-color: #706d6db9;">
+      <br style="height: 3%;">
+    </div>
+    <div class="carousel" aria-label="Gallery">
+      <ol class="carousel__viewport">
+        <li id="carousel__slide1" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <h2 class="carousel__title">DesarrolloGPT</h2>
+            <img class="imgSlide" src="Imagenes/Desarrollo GPT.png">
+          </div>
+          <a href="#carousel__slide4" class="carousel__prev">Go to last slide</a>
+          <a href="#carousel__slide2" class="carousel__next">Go to next slide</a>
+        </li>
+        <li id="carousel__slide2" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <h2 class="carousel__title">Gestión de conocimiento</h2>
+            <img class="imgSlide" src="Imagenes/Knowledge Management.png">
+          </div>
+          <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
+          <a href="#carousel__slide3" class="carousel__next">Go to next slide</a>
+        </li>
+        <li id="carousel__slide3" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <h2 class="carousel__title">Formación</h2>
+            <img class="imgSlide" src="Imagenes/Formación.png">
+          </div>
+          <a href="#carousel__slide2" class="carousel__prev">Go to previous slide</a>
+          <a href="#carousel__slide4" class="carousel__next">Go to next slide</a>
+        </li>
+        <li id="carousel__slide4" tabindex="0" class="carousel__slide">
+          <div class="carousel__snapper">
+            <h2 class="carousel__title">Gestión de deficiencias</h2>
+            <img class="imgSlide" src="Imagenes/Gestión de deficiencias.png">
+          </div>
+          <a href="#carousel__slide3" class="carousel__prev">Go to previous slide</a>
+          <a href="#carousel__slide1" class="carousel__next">Go to first slide</a>
+        </li>
+      </ol>
+      <aside class="carousel__navigation">
+        <ol class="carousel__navigation-list">
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide1" class="carousel__navigation-button">Go to slide 1</a>
+          </li>
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide2" class="carousel__navigation-button">Go to slide 2</a>
+          </li>
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide3" class="carousel__navigation-button">Go to slide 3</a>
+          </li>
+          <li class="carousel__navigation-item">
+            <a href="#carousel__slide4" class="carousel__navigation-button">Go to slide 4</a>
+          </li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <!--  SECCION DE ENTRADA AL Progreso-->
+  <section class="cuerpoPrincipal">
+    <div class="introCuerpos">
+      <h1 class="tituloseccion">Progreso del proyecto</h1>
+      <hr style="height: 1px; width: 80%;background-color: #706d6db9;">
+      <br style="height: 3%;">
+    </div>
+    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 25%">25%</div>
+      
+    </div>
+    <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width: 50%">50%</div>
+    </div>
+    <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar bg-warning text-dark progress-bar-striped progress-bar-animated" style="width: 75%">75%</div>
+    </div>
+    <div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" style="width: 100%">100%</div>
+    </div>
+  </section>
 </body>
 
 </html>
