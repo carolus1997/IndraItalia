@@ -1,5 +1,5 @@
 import arcpy
-capa_carreteras = r'C:\Users\ctmiraperceval\OneDrive - Indra\Escritorio\CartoItalia\Data\Recursos_Por\Carreteras\carreteras.gdb\Portugal_carreteras'
+capa_carreteras = r"C:\Users\ctmiraperceval\Documents\ArcGIS\Projects\CartoSec\Chile.gdb\Carreteras"
 carreteras_dict = {
     "unclassified": (0, "track"),
     "proposed": (0, "track"),

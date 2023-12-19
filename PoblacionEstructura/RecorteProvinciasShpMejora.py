@@ -48,7 +48,7 @@ else:
 arcpy.MakeFeatureLayer_management(capa_provincias, 'provincias_lyr')
 
 # Obtiene una lista de las provincias en la capa de provincias
-provincias = [row[0] for row in arcpy.da.SearchCursor('provincias_lyr', 'NAME_2')]
+provincias = [row[0] for row in arcpy.da.SearchCursor('provincias_lyr', 'PROVINCIA')]
 
 # Sustituye las comillas simples en los nombres de las provincias por un carácter de escape de comilla simple
 provincias_escaped = [provincia.replace("'", "_").replace("´", "") for provincia in provincias]
@@ -58,7 +58,7 @@ print(f"LISTA DE PRONVINCIAS: {provincias_escaped}")
 # Recorre cada provincia
 for provincia in provincias_escaped:
     # Selecciona la provincia actual
-    arcpy.SelectLayerByAttribute_management('provincias_lyr', 'NEW_SELECTION', f"NAME_2 = '{provincia}'")
+    arcpy.SelectLayerByAttribute_management('provincias_lyr', 'NEW_SELECTION', f"PROVINCIA = '{provincia}'")
     # Define el nombre de la capa de salida
     nombre_capa_salida = f"{capa_type}_{provincia}"
     nombre_capa_salida = nombre_capa_salida.replace(" ", "_").replace("-", "_").replace("/", "")
