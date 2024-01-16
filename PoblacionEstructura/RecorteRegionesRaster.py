@@ -15,7 +15,7 @@ output_raster = r'C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Reu
 # Ruta de salida de los archivos raster recortados por región
 output_folder = r'C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Reursos_Chi\DEM\DEM'
 # Lista de archivos .tif en la carpeta
-tif_files = [os.path.join(tif_folder, file) for file in os.listdir(tif_folder) if file.endswith('.jp2')]
+tif_files = [os.path.join(tif_folder, file) for file in os.listdir(tif_folder) if file.endswith('.tif')]
 
 # Unir los archivos .tif en uno solo
 arcpy.MosaicToNewRaster_management(input_rasters=";".join(tif_files),
