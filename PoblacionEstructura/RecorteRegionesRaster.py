@@ -1,21 +1,21 @@
 import arcpy
 import os
 # Ruta de la carpeta que contiene los archivos .tif
-tif_folder = r'C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\DEMs\Continente\Zips2'
+tif_folder = r'C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Reursos_Chi\DEM\DEM'
 
 # Ruta del archivo .shp de las regiones
-shp_file = r'C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\Unidades_Admin_It\RegionesItaliaContinental.shp'
+shp_file = r'C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Reursos_Chi\Limites_Admin\DPA_2023\REGIONES\REGIONES_v1.shp'
 
 # Nombre del atributo que contiene los nombres de las regiones
-attribute_name = 'NAME_1'
+attribute_name = 'REGION'
 
 # Ruta de salida del archivo raster total
-output_raster = r'C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\DEMs\Continente\Rasters\total.tif'
+output_raster = r'C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Reursos_Chi\DEM\DEM_Chile.tif'
 
 # Ruta de salida de los archivos raster recortados por región
-output_folder = r'C:\Users\ctmiraperceval\Desktop\CartoItalia\Data\Recursos\DEMs\Continente\Rasters'
+output_folder = r'C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Reursos_Chi\DEM\DEM'
 # Lista de archivos .tif en la carpeta
-tif_files = [os.path.join(tif_folder, file) for file in os.listdir(tif_folder) if file.endswith('.tif')]
+tif_files = [os.path.join(tif_folder, file) for file in os.listdir(tif_folder) if file.endswith('.jp2')]
 
 # Unir los archivos .tif en uno solo
 arcpy.MosaicToNewRaster_management(input_rasters=";".join(tif_files),

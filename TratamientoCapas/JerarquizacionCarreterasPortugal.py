@@ -1,4 +1,5 @@
 import arcpy
+arcpy.env.overwriteOutput = True
 capa_carreteras = r"C:\Users\ctmiraperceval\Documents\ArcGIS\Projects\CartoSec\Chile.gdb\Carreteras"
 carreteras_dict = {
     "unclassified": (0, "track"),
