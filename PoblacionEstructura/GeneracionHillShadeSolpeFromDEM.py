@@ -2,7 +2,7 @@ import arcpy
 import os
 
 # Define la carpeta fuente
-carpeta_fuente = r"C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Resultados\Gdbs_Por"  # Reemplaza con la ruta de tu carpeta
+carpeta_fuente = r"C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Resultados\Gdbs_Chi"  # Reemplaza con la ruta de tu carpeta
 
 # Lista todas las geodatabases en la carpeta fuente
 gdb_list = [os.path.join(carpeta_fuente, f) for f in os.listdir(carpeta_fuente) if f.endswith(".gdb")]
