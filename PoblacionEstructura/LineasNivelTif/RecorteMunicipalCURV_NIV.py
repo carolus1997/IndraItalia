@@ -1,63 +1,58 @@
 import arcpy
 import os
-import unidecode
 
-def normalizar_nombre(nombre):
-    return unidecode.unidecode(nombre.lower().replace(" ", ""))
+arcpy.env.overwriteOutput = True
 
 def crear_carpeta(carpeta):
     if not os.path.exists(carpeta):
         os.makedirs(carpeta)
 
-carpeta_poligonos = r"C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Recursos_Es\RecortesProvincias"
+carpeta_poligonos = r"C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Recursos_Es\RecortesProvincias\Poligonos"
 carpeta_curvas_nivel = r"C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Recursos_Es\Altimetria\CURV_NIV"
 carpeta_salida = r"C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Recursos_Es\Altimetria\CUR_NIV_MUNI"
 
-# Verificar si las carpetas existen
-for carpeta in [carpeta_poligonos, carpeta_curvas_nivel, carpeta_salida]:
-    if not os.path.exists(carpeta):
-        print(f"La carpeta {carpeta} no existe. Verifique la ruta.")
-        exit(1)  # Detiene la ejecución del script
-
-# Configurar el entorno de trabajo de arcpy
+arcpy.env.workspace = carpeta_poligonos
+featureclassesPoligonos = arcpy.ListFeatureClasses()
 arcpy.env.workspace = carpeta_curvas_nivel
-arcpy.env.overwriteOutput = True  # Sobrescribir los archivos existentes
+featureclassesCurvasNivel = arcpy.ListFeatureClasses()
 
-# Listar los archivos shapefile
-curvas_nivel_archivos = [f for f in os.listdir(carpeta_curvas_nivel) if f.endswith('.shp')]
+# Crear diccionario de concordancias
+concordancias = {}
+for poligono in featureclassesPoligonos:
+    identificador_poligono = poligono.split('.')[0]
+    for curva in featureclassesCurvasNivel:
+        identificador_curva = curva.split('_')[0]
+        if identificador_poligono == identificador_curva:
+            concordancias.setdefault(poligono, []).append(curva)
 
-# Cargar polígonos municipales
-poligonos = arcpy.ListFeatureClasses("*", "Polygon", carpeta_poligonos)
+# Procesar cada concordancia
+for poligono, curvas in concordancias.items():
+    ruta_poligono = os.path.join(carpeta_poligonos, poligono)
+    for curva in curvas:
+        ruta_curva = os.path.join(carpeta_curvas_nivel, curva)
 
-for poligono in poligonos:
-    try:
-        poligono_propiedades = arcpy.Describe(poligono)
-        nombre_provincia = normalizar_nombre(poligono_propiedades.NAMEPROV)
-        codprov = poligono_propiedades.CODPROV
-        codmuni = poligono_propiedades.CODMUNI
+        with arcpy.da.SearchCursor(ruta_poligono, ["CODPROV", "CODMUNI"]) as cursor:
+            for fila in cursor:
+                codprov, codmuni = fila
+                carpeta_prov = os.path.join(carpeta_salida, codprov)
+                crear_carpeta(carpeta_prov)
 
-        ruta_carpeta_codprov = os.path.join(carpeta_salida, codprov)
-        crear_carpeta(ruta_carpeta_codprov)
+                # Seleccionar y recortar por cada término municipal
+                where_clause = f"CODMUNI = '{codmuni}'"
+                arcpy.MakeFeatureLayer_management(ruta_poligono, "poligono_lyr", where_clause)
+                arcpy.MakeFeatureLayer_management(ruta_curva, "curva_lyr")
 
-        for archivo in curvas_nivel_archivos:
-            if nombre_provincia in normalizar_nombre(archivo):
-                curva_nivel = os.path.join(carpeta_curvas_nivel, archivo)
+                ruta_salida = os.path.join(carpeta_prov, f"{codmuni}.shp")
+                arcpy.analysis.Intersect(["poligono_lyr", "curva_lyr"], ruta_salida)
 
-                # Asegurarse de que ambos tengan el mismo CRS
-                arcpy.DefineProjection_management(curva_nivel, poligono_propiedades.spatialReference)
+                # Verificar si la capa de salida tiene entidades
+                count = int(arcpy.management.GetCount(ruta_salida)[0])
+                if count > 0:
+                    print(f"Recorte guardado: {ruta_salida}, con {count} entidades.")
+                else:
+                    print(f"No se encontraron intersecciones para {codmuni} en {curva}")
 
-                # Realizar el recorte
-                curva_recortada = arcpy.analysis.Intersect([curva_nivel, poligono], "in_memory/intersect")
-
-                # Guardar el resultado
-                ruta_archivo_salida = os.path.join(ruta_carpeta_codprov, f"{codmuni}.shp")
-                arcpy.CopyFeatures_management(curva_recortada, ruta_archivo_salida)
-
-    except arcpy.ExecuteError:
-        print(arcpy.GetMessages(2))
-
-    except Exception as e:
-        print(f"Error: {e}")
+                arcpy.Delete_management("poligono_lyr")
+                arcpy.Delete_management("curva_lyr")
 
 print("Proceso completado.")
-
