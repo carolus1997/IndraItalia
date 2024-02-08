@@ -8,7 +8,7 @@ def crear_carpeta(carpeta):
         os.makedirs(carpeta)
 
 carpeta_poligonos = r"C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Recursos_Es\RecortesProvincias\Poligonos"
-carpeta_curvas_nivel = r"C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Recursos_Es\Altimetria\CURV_NIV"
+carpeta_curvas_nivel = r"C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Recursos_Es\Altimetria\CUR_NIV_2"
 carpeta_salida = r"C:\Users\ctmiraperceval\Desktop\CartografiaPaises\Recursos\Recursos_Es\Altimetria\CUR_NIV_MUNI"
 
 arcpy.env.workspace = carpeta_poligonos
@@ -17,7 +17,7 @@ arcpy.env.workspace = carpeta_curvas_nivel
 featureclassesCurvasNivel = arcpy.ListFeatureClasses()
 
 # Crear diccionario de concordancias
-concordancias = {}
+concordancias = {} 
 for poligono in featureclassesPoligonos:
     identificador_poligono = poligono.split('.')[0]
     for curva in featureclassesCurvasNivel:
